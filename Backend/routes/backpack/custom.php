@@ -19,4 +19,8 @@ Route::group([
 ], function () { // custom admin routes
     Route::crud('user', 'UserCrudController');
     Route::crud('ads', 'AdsCrudController');
+    Route::crud('category', 'CategoryCrudController');
+    Route::crud('post', 'PostCrudController');
+    Route::crud('tag', 'TagCrudController');
+    Route::get('charts/weekly-users', 'Charts\WeeklyUsersChartController@response')->name('charts.weekly-users.index');
 }); // this should be the absolute last line of this file

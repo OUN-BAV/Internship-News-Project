@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
-            $table->binary('url_gallery')->nullable();
+            $table->string('url')->nullable();
+            $table->string('mime_type')->nullable();
             $table->unsignedBigInteger('galleryable_id')->nullable();
             $table->string('galleryable_type')->nullable();
             $table->timestamps();

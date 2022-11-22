@@ -1,5 +1,5 @@
 @if ($crud->hasAccess('create'))
-	<a class="btn btn-secondary text-dark" data-style="zoom-in" id='upload'><span class="ladda-label"><i class="la la-cloud-download-alt"></i>Import</span></a>
+	<a class="btn btn-dark text-light" data-style="zoom-in" id='upload'><span class="ladda-label"><i class="la la-cloud-download-alt"></i>Import</span></a>
 @endif
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>

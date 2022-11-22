@@ -15,6 +15,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  */
 class PostCrudController extends CrudController
 {
+    use \Backpack\CRUD\app\Http\Controllers\Operations\BulkDeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation {store as traitStore;}
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
@@ -41,18 +42,24 @@ class PostCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        
+        $this->crud->enableBulkActions();
+        $this->crud->addButtonFromView('top','bulk_delete','end');
+        
         // CRUD::column('user_id');
-        CRUD::column('title');
-        CRUD::column('content');
-        CRUD::column('category_id');
-        CRUD::column('post_by');
-        CRUD::column('viewer');
-        CRUD::addColumn([
+        $this->crud->addColumn([
             'label' => 'Url_Thumbnail',
             'name' => 'profile.url_thumbnail',
-            'type' => 'image'
+            'type' => 'image',
+            'width'=>'50px',
+            'height'=>'50px',
         ]);
-        CRUD::addColumn([
+        $this->crud->column('title');
+        $this->crud->column('content');
+        $this->crud->column('category_id');
+        $this->crud->column('post_by');
+        $this->crud->column('viewer');
+        $this->crud->addColumn([
             'label' => 'Gallery',
             'name' => 'gallery',
             'type' => 'closure',
@@ -63,8 +70,8 @@ class PostCrudController extends CrudController
                     }
                 }
             }
-        
         ]);
+
         $this->crud->addFilter([
             'name'  => 'title',
             'type'  => 'select2',
@@ -125,28 +132,29 @@ class PostCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(PostRequest::class);
+        $this->crud->setValidation(PostRequest::class);
 
-        // CRUD::field('user_id');
-        CRUD::field('title')->tab('post field');
-        CRUD::field('content')->tab('post field');
-        CRUD::field('post_by')->tab('post field');
-        // CRUD::field('viewer');
-        CRUD::field('category_id')->tab('post field');
-        CRUD::addField([
+        // $this->crud->field('user_id');
+        $this->crud->field('title')->tab('post field');
+        $this->crud->field('content')->tab('post field');
+        $this->crud->field('post_by')->tab('post field');
+        // $this->crud->field('viewer');
+        $this->crud->field('category_id')->tab('post field');
+        $this->crud->addField([
             'name' => 'tags',
             'label' => 'Tags',
             'tab'=>'post field'
         ]);
-        CRUD::addField([
+        $this->crud->addField([
             'name'      => 'gallery',
             'label'     => 'Gallery',
-            'type'      => 'upload_multiple',
+            'type'      => 'multiple_image',
             'upload'    => true,
             'disk'      => 'upload',
+            'sub-field'=>'url',
             'tab'=>'image',
         ]);
-        CRUD::addField([
+        $this->crud->addField([
             'label' => "Thumbnail",
             'name' => "profile.url_thumbnail",
             'type' => 'image',

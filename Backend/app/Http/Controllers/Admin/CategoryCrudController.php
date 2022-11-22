@@ -14,6 +14,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  */
 class CategoryCrudController extends CrudController
 {
+    use \Backpack\CRUD\app\Http\Controllers\Operations\BulkDeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
@@ -40,6 +41,9 @@ class CategoryCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        $this->crud->enableBulkActions();
+        $this->crud->addButtonFromView('top','bulk_delete','end');
+        
         CRUD::column('name');
         CRUD::column('created_at');
         CRUD::column('updated_at');

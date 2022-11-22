@@ -14,6 +14,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  */
 class TagCrudController extends CrudController
 {
+    use \Backpack\CRUD\app\Http\Controllers\Operations\BulkDeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
@@ -40,9 +41,10 @@ class TagCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
+        $this->crud->enableBulkActions();
+        $this->crud->addButtonFromView('top','bulk_delete','end');
+        $this->crud->enableExportButtons();
+
         $this->crud->addFilter([
             'name'  => 'name',
             'type'  => 'select2',
@@ -54,6 +56,10 @@ class TagCrudController extends CrudController
                 $tag=Tag::all()->pluck('name')->toArray();
                 $this->crud->addClause('where', 'name', $tag[$value]);
          });
+
+        CRUD::column('name');
+        CRUD::column('created_at');
+        CRUD::column('updated_at');
     }
 
     /**

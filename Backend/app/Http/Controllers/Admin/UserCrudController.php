@@ -101,9 +101,9 @@ class UserCrudController extends CrudController
                  'type'     => 'closure',
                  'function' => function ($entry) {
                      if($entry->profile == null){
-                         return "<a href='".asset('uploads/folder_1/folder_2/images.png')."' data-lightbox='.$entry->id.'><img style='width:40px;' class='img-thumbnail rounded-circle' src='" . asset('uploads/folder_1/folder_2/images.png') . "'></img></a>";
+                         return "<a href='".asset('uploads/folder_1/folder_2/images.png')."' data-lightbox='.$entry->id.'><img style='width:50px;' class='img-thumbnail rounded-circle' src='" . asset('uploads/folder_1/folder_2/images.png') . "'></img></a>";
                      }else{
-                         return "<a href='".asset($entry->profile)."' data-lightbox='.$entry->id.' ><img style='width:40px;' class='img-thumbnail rounded-circle' src='" . asset($entry->profile) . "'></img></a>";
+                         return "<a href='".asset($entry->profile)."' data-lightbox='.$entry->id.' ><img style='width:50px;' class='img-thumbnail rounded-circle' src='" . asset($entry->profile) . "'></img></a>";
                      }
                  },
                  'escaped' => false

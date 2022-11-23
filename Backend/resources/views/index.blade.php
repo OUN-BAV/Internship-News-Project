@@ -2,7 +2,7 @@
 @push('style')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
 @endpush
-    
+
 
 @section('nav')
  @include('inc.nav')

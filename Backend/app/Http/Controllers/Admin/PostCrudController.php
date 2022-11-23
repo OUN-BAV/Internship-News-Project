@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Post;
 use App\Models\Category;
 use App\Traits\UploadTrait;
+use Psy\Readline\Hoa\Console;
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\DB;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
-use Psy\Readline\Hoa\Console;
 
 /**
  * Class PostCrudController
@@ -203,5 +204,10 @@ class PostCrudController extends CrudController
         $entry = $this->crud->getCurrentEntry();
         $this->base64MorphManyFiles('gallery', $entry);
         return $res;
+    }
+
+    public function getPost(){
+        $data['posts']=Post::orderBy('category_id','desc')->with('user','category')->get();
+        return view('index',$data);
     }
 }

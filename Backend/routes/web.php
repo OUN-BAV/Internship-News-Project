@@ -1,4 +1,7 @@
 <?php
+
+use App\Http\Controllers\Admin\CategoryCrudController;
+use App\Http\Controllers\Admin\PostCrudController;
 use App\Http\Controllers\Admin\UserCrudController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
+Route::get('/',[PostCrudController::class,'getPost']);
+Route::get('/category',[CategoryCrudController::class,'getCategory']);
 Route::put('admin/user/profileUpdate',[UserCrudController::class,'update']);
 Route::post('/admin/user/importToDatabase',[UserCrudController::class,'importToDb']);

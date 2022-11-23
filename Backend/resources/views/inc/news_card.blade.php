@@ -1,77 +1,34 @@
-<div class="row">
-        <div class="card col p-2 m-1">
-            <div class="card_header">
-                <h6>Sport news</h6>
-            </div>
-            <div class="card_body">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7v6LIG3Kqk01pXrLkXMdLdYTJTBpajBQojg&usqp=CAU" class="img-thumbnail" alt="">
-            </div>
-            <div class="card_footer">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo voluptatem ad soluta exercitationem? Ab, ad!</p>
-                <a href="" class="btn btn-primary text-decoration-none text-light">Read more</a>
-            </div>
-        </div>
-        <div class="card col p-2 m-1">
-            <div class="card_header">
-                <h6>Sport news</h6>
-            </div>
-            <div class="card_body">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7v6LIG3Kqk01pXrLkXMdLdYTJTBpajBQojg&usqp=CAU" class="img-thumbnail" alt="">
-            </div>
-            <div class="card_footer">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo voluptatem ad soluta exercitationem? Ab, ad!</p>
-                <a href="" class="btn btn-primary text-decoration-none text-light">Read more</a>
-            </div>
-        </div>
-        <div class="card col p-2 m-1">
-            <div class="card_header">
-                <h6>Sport news</h6>
-            </div>
-            <div class="card_body">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7v6LIG3Kqk01pXrLkXMdLdYTJTBpajBQojg&usqp=CAU" class="img-thumbnail" alt="">
-            </div>
-            <div class="card_footer">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo voluptatem ad soluta exercitationem? Ab, ad!</p>
-                <a href="" class="btn btn-primary text-decoration-none text-light">Read more</a>
-            </div>
-        </div>
+{{-- @dd($categories[0]->post) --}}
 
-        <div class="w-100"></div>
-
-        <div class="card col p-2 m-1">
-            <div class="card_header">
-                <h6>Sport news</h6>
-            </div>
-            <div class="card_body">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7v6LIG3Kqk01pXrLkXMdLdYTJTBpajBQojg&usqp=CAU" class="img-thumbnail" alt="">
-            </div>
-            <div class="card_footer">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo voluptatem ad soluta exercitationem? Ab, ad!</p>
-                <a href="" class="btn btn-primary text-decoration-none text-light">Read more</a>
-            </div>
+@foreach ($categories as $category )
+    @if($category->post == [])
+        <h1>hhhhhh</h1>
+    @else
+        <div class=" border-bottom border-3 border-info">
+            <div class="bg-info shadow-sm category">{{$category->name}}</div>
         </div>
-        <div class="card col p-2 m-1">
-            <div class="card_header">
-                <h6>Sport news</h6>
-            </div>
-            <div class="card_body">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7v6LIG3Kqk01pXrLkXMdLdYTJTBpajBQojg&usqp=CAU" class="img-thumbnail" alt="">
-            </div>
-            <div class="card_footer">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo voluptatem ad soluta exercitationem? Ab, ad!</p>
-                <a href="" class="btn btn-primary text-decoration-none text-light">Read more</a>
-            </div>
+        <div class="w-100 d-flex" style="flex-wrap: wrap">
+            @foreach ($category->post as $post)
+                <a href="" class="card bg-light p-2 border-1 text-decoration-none m-1" style="width: 32%">
+                    <div class="card_body">
+                        <img src="{{asset('uploads/galleries/'.$post->thumbnail)}}" class="img-thumbnail" alt="" style="width: 240px;height:240px;">
+                    </div>
+                    <div class="card_footer">
+                        <p class="text-secondary " style="font-size: 0.5rem;">{{$post->created_at}}</p>
+                        <p class=" text-dark">{{$post->title}}</p>
+                    </div>
+                </a>
+            @endforeach
         </div>
-        <div class="card col p-2 m-1">
-            <div class="card_header">
-                <h6>Sport news</h6>
-            </div>
-            <div class="card_body">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7v6LIG3Kqk01pXrLkXMdLdYTJTBpajBQojg&usqp=CAU" class="img-thumbnail" alt="">
-            </div>
-            <div class="card_footer">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo voluptatem ad soluta exercitationem? Ab, ad!</p>
-                <a href="" class="btn btn-primary text-decoration-none text-light">Read more</a>
-            </div>
-        </div>
-</div>
+    @endif
+@endforeach
+<style scoped>
+    .category{
+        clip-path: polygon(0 0, 72% 0, 100% 100%, 0% 100%);
+        width: 170px;
+        height: 40px;
+        display: flex;
+        padding: 2px;
+        align-items: center;
+    }
+</style>

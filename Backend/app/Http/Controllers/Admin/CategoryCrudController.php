@@ -82,4 +82,9 @@ class CategoryCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
+
+    public function getCategory(){
+        $data['categories']=Category::with('post')->get();
+        return view('index',$data);
+    }
 }

@@ -1,7 +1,12 @@
-<nav class="p-2 mt-2">
-    <ul class="list-unstyled">
+<nav class="shadow-sm">
+    <ul class="list-unstyled p-0 bg-dark d-flex">
         @foreach ($categories as $category)
-            <li class="bg-light shadow-sm p-2 mt-2 text-start rounded"><a class="text-secondary text-decoration-none" href="">{{$category->name}}</a></li>
+            <li id="sub-menu" class="bg-light p-2 text-center mt-1"><a class="text-decoration-none text-secondary" href="">{{$category->name}}</a></li>
         @endforeach
     </ul>
 </nav>
+<style scoped>
+    #sub-menu{
+        border-right: 2px solid black;
+    }
+</style>

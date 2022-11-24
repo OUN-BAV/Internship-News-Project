@@ -1,10 +1,7 @@
-<nav class="navbar navbar-light shadow-sm">
-    <div class="row d-flex w-100">   
+<nav class="navbar navbar-light bg-light p-0">
+    <div class="row d-flex w-100">
         <div class="d-flex col-sm-9">
             <img src="{{asset('uploads/logo/logo.png')}}" alt="" class="col-sm-2" style="width: 10%;height:8vh">
-            {{-- <h3 class="text-warning col-sm-2 text-center mt-2">
-                Kh_News
-            </h3> --}}
             <ul class="list-unstyled d-flex justify-content-around align-items-center col-sm-4 p-2 mt-2">
                 <li class="d-flex justify-content-center align-items-center"><a href="" class="text-decoration-none text-secondary"><em class=""></em>Home</a></li>
                 <li class="d-flex justify-content-center align-items-center"><a href="" class="text-decoration-none text-secondary"><em class=""></em>National</a></li>

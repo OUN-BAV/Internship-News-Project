@@ -1,11 +1,11 @@
 @include('crud::fields.inc.wrapper_start')
-    <label>{!! $field['label'] !!}</label>
+    {{-- <label>{!! $field['label'] !!}</label> --}}
     @include('crud::fields.inc.translatable_icon')
 
     @if(isset($field['prefix']) || isset($field['suffix'])) <div class="input-group"> @endif
         @if(isset($field['prefix'])) <div class="input-group-prepend"><span class="input-group-text">{!! $field['prefix'] !!}</span></div> @endif
         <input
-            type="number"
+            type="hidden"
             name="{{ $field['name'] }}"
             value="{{ $field['value'] ?? $field['default'] ?? '' }}"
             readonly

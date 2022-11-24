@@ -210,4 +210,10 @@ class PostCrudController extends CrudController
         $data['posts']=Post::orderBy('category_id','desc')->with('user','category')->get();
         return view('index',$data);
     }
+
+    public function getPostById($id){
+        $data['posts'] = Post::where('id', $id)->with('galleries')->get();
+        $data['categories'] = Category::all();
+        return view('pages.info', $data);
+    }
 }

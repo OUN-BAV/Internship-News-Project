@@ -9,7 +9,7 @@
 </head>
 <body>
     @yield('nav')
-
+    @yield('sub_nav')
     <div class="container">
         @yield('ads')
         <div class="main d-flex">

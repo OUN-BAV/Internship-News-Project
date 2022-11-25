@@ -224,7 +224,7 @@ class PostCrudController extends CrudController
     }
 
     public function getPostById($id){
-        $data['posts'] = Post::where('id', $id)->with('galleries')->get();
+        $data['posts'] = Post::where('id', $id)->with('galleries','user','category')->get();
         $data['categories'] = Category::all();
         $data['ads']=Ads::paginate(1);
         return view('pages.info', $data);

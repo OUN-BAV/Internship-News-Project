@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    @include('inc.news_card')
+    @include('inc.news_info')
 @endsection
 
 @section('footer')

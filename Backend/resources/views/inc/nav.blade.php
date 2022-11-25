@@ -1,20 +1,68 @@
-<nav class="navbar navbar-light bg-light p-0">
-    <div class="row d-flex w-100">
-        <div class="d-flex col-sm-9">
-            <img src="{{asset('uploads/logo/logo.png')}}" alt="" class="col-sm-2" style="width: 10%;height:8vh">
-            <ul class="list-unstyled d-flex justify-content-around align-items-center col-sm-4 p-2 mt-2">
-                <li class="d-flex justify-content-center align-items-center"><a href="" class="text-decoration-none text-secondary"><em class=""></em>Home</a></li>
-                <li class="d-flex justify-content-center align-items-center"><a href="" class="text-decoration-none text-secondary"><em class=""></em>National</a></li>
-                <li class="d-flex justify-content-center align-items-center"><a href="" class="text-decoration-none text-secondary"><em class=""></em>Internation</a></li>
-                <li class="d-flex justify-content-center align-items-center"><a href="" class="text-decoration-none text-secondary"><em class=""></em>Politics</a></li>
-            </ul>
-        </div>
-        <div class="d-flex justify-content-center align-items-center col-sm-3">
-            <i class="fa fa-search"></i>
-            <ul class="list-unstyled d-flex justify-content-center align-items-center mt-2">
-                <li class="list-unstyled"><a href="" class="text-decoration-none text-secondary">login /</a></li>
-                <li class="list-unstyled"><a href="" class="text-decoration-none text-secondary">sign in</a></li>
-            </ul>
-        </div>
+{{-- @dd($categories) --}}
+<nav class="navbar p-0">
+    <div class="main_logo">
+        <img src="{{asset('images/news.png')}}" style="height: 10vh" alt="">
     </div>
+    <div class="navigation_category_items">
+        <ul id="nav">
+            <li><a class="active" href="{{URL('/')}}"><i class="fa fa-home"></i> Home</a></li>
+            @foreach ($categories as $category)
+                <li><a href="{{URL("/category/$category->name")}}">{{$category->name}}</a></li>
+            @endforeach
+        </ul>
+      </div>
 </nav>
+<style scoped>
+.active{
+    color: #FFD910;
+}
+.main_logo{
+    width: 100%;
+    background: black;
+    text-align: center;
+    padding: 3px;
+}
+
+.main_logo h2{
+    text-align: center;
+    color: #dededf;
+}
+.navigation_category_items {
+    position: sticky;
+  overflow: visible;
+  background: #b8b8bb;
+  width: 100%;
+}
+.navigation_category_items ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.navigation_category_items ul li {
+  float: left;
+  position: relative;
+}
+.navigation_category_items ul li a {
+  color: rgb(3, 3, 3);
+  display: block;
+  font-family: "bebasregular";
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 18px 18.7px;
+  border-right: 2px solid #FFD910;
+
+}
+.navigation_category_items ul li a:hover{
+    color: #FFD910;
+}
+#nav li ul {
+  transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+}
+
+</style>

@@ -91,8 +91,8 @@ class AdsCrudController extends CrudController
             'label' => "Ads Image",
             'name' => "image",
             'type' => 'image',
-            'crop' => false, // set to true to allow cropping, false to disable
-            'aspect_ratio' => 1, // o accessor function
+            'crop' => true, // set to true to allow cropping, false to disable
+            // 'aspect_ratio' => 1, // o accessor function
         ]);
     }
 

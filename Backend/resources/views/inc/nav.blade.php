@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav class="navbar sticky">
     <div class="main_logo">
         <img src="{{asset('images/news.png')}}" style="height: 10vh" alt="">
     </div>
@@ -28,7 +28,6 @@
     text-align: center;
     padding: 3px;
 }
-
 .main_logo h2{
     text-align: center;
     color: #dededf;

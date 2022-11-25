@@ -12,7 +12,7 @@
     @include('inc.ads')
 @endsection
 
-@section('sub_nav')
+@section('sidebar')
     @include('inc.vertical_menu')
 @endsection
 

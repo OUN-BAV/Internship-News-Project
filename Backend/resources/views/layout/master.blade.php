@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @stack('style')
+    <style>
+        body{
+            font-family: serif;
+        }
+    </style>
 </head>
 <body>
     @yield('nav')
@@ -13,7 +18,7 @@
     <div class="container">
         @yield('ads')
         <div class="main d-flex">
-            <div class="main col-sm-9 p-3">
+            <div class="main col-sm-9 mt-3 p-4">
                 @yield('content')
             </div>
             <div class="sidebar col-sm-3">

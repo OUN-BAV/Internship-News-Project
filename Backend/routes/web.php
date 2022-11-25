@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/posts', function () {
     return view('pages.info');
 });
+Route::get('/category/{category}',[CategoryCrudController::class,'getPostByCategory']);
 Route::get('/',[PostCrudController::class,'getPost']);
-Route::get('/post/{id}', [PostCrudController::class, 'getPostById']);
-Route::get('/category',[CategoryCrudController::class,'getCategory']);
+Route::get('/article/{id}', [PostCrudController::class, 'getPostById']);
 Route::put('admin/user/profileUpdate',[UserCrudController::class,'update']);
 Route::post('/admin/user/importToDatabase',[UserCrudController::class,'importToDb']);

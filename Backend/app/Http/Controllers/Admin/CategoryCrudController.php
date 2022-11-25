@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Ads;
+use App\Models\Post;
 use App\Models\Category;
 use App\Http\Requests\CategoryRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
@@ -23,8 +25,6 @@ class CategoryCrudController extends CrudController
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
-     * 
-     * @return void
      */
     public function setup()
     {
@@ -35,9 +35,6 @@ class CategoryCrudController extends CrudController
 
     /**
      * Define what happens when the List operation is loaded.
-     * 
-     * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
-     * @return void
      */
     protected function setupListOperation()
     {
@@ -62,9 +59,6 @@ class CategoryCrudController extends CrudController
 
     /**
      * Define what happens when the Create operation is loaded.
-     * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-create
-     * @return void
      */
     protected function setupCreateOperation()
     {
@@ -74,17 +68,18 @@ class CategoryCrudController extends CrudController
 
     /**
      * Define what happens when the Update operation is loaded.
-     * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-update
-     * @return void
      */
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
     }
 
-    public function getCategory(){
-        $data['categories']=Category::with('post')->get();
+    protected function getPostByCategory($category){
+        $Category=Category::where('name',$category)->with('post')->get();
+        $data['categories']=Category::all();
+        $data['posts']=$Category[0]->post;
+        $data['related_info']=Post::where('category_id',$Category[0]->id)->get();
+        $data['ads']=Ads::paginate(1);
         return view('index',$data);
     }
 }

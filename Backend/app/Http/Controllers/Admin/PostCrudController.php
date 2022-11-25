@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Ads;
 use App\Models\Post;
 use App\Models\Category;
 use App\Traits\UploadTrait;
@@ -24,6 +25,8 @@ class PostCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\BulkDeleteOperation { bulkDelete as traitBulkDelete; }
+
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -43,6 +46,9 @@ class PostCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        $this->crud->enableBulkActions();
+        $this->crud->addButtonFromView('top', 'bulk_delete', 'bulk_delete', 'start');
+
         CRUD::column('title');
         CRUD::column('content');
         CRUD::column('category_id');
@@ -78,6 +84,7 @@ class PostCrudController extends CrudController
         
         $this->crud->column('title');
         $this->crud->column('content');
+      
         $this->crud->column('category_id');
         $this->crud->column('viewer');
 
@@ -152,6 +159,7 @@ class PostCrudController extends CrudController
             [
                 'name' => 'content',
                 'label' => 'Content',
+                'type'=>'tinymce',
                 'tab'=>'post field'
             ],
             [
@@ -179,12 +187,14 @@ class PostCrudController extends CrudController
                 'tab'=>'image'
             ],
             [
-                'label' => "Thumbnail",
+                'label' => "image_thimnail",
                 'name' => "thumbnail",
                 'type' => 'image',
                 'crop' => true,
-                'aspect_ratio' => 1,
+                // 'aspect_ratio' => 1,
                 'disk' => 'public',
+                'upload'    => true,
+                'temporary' => 10,
                 'tab'=>'image'
             ]
         ]);
@@ -206,14 +216,26 @@ class PostCrudController extends CrudController
         return $res;
     }
 
-    public function getPost(){
-        $data['posts']=Post::orderBy('category_id','desc')->with('user','category')->get();
+    public function getPost()
+    {
+        $data['posts']=Post::orderBy('id','desc')->with('user','category')->get();
+        $data['categories'] = Category::all();
+        $data['ads']=Ads::paginate(1);
         return view('index',$data);
     }
-
-    public function getPostById($id){
-        $data['posts'] = Post::where('id', $id)->with('galleries')->get();
+    public function getPostById($id)
+    {
+        $data['posts'] = Post::where('id', $id)->with('galleries','category','user')->get();
+        $post_category_id = $data['posts'][0]->category->id;
+        $data['related_info']=Post::where('category_id',$post_category_id)->get();
         $data['categories'] = Category::all();
+        $data['ads']=Ads::paginate(1);
         return view('pages.info', $data);
     }
+    protected function bulkDelete(PostRequest $request)
+    {
+        Post::destroy($request->entries);
+        return $request->entries;
+    }
+
 }

@@ -1,27 +1,25 @@
-<nav class="navbar sticky">
+{{-- @dd($categories) --}}
+<nav class="navbar p-0">
     <div class="main_logo">
         <img src="{{asset('images/news.png')}}" style="height: 10vh" alt="">
     </div>
     <div class="navigation_category_items">
         <ul id="nav">
-          <li><a href="#">worldnews</a>
-          </li>
-          <li><a href="#">sports</a></li>
-          <li><a href="#">tech</a>
-          </li>
-          <li><a href="#">business</a></li>
-          <li><a href="#">Movies</a>
-          </li>
-          <li><a href="#">entertainment</a></li>
-          <li><a href="#">culture</a></li>
-          <li><a href="#">Books</a>
-          </li>
-          <li><a href="#">classifieds</a></li>
-          <li><a href="#">blogs</a></li>
+            <li>
+              <a href="{{URL('/')}}"><i class="fa fa-home"></i> Home</a>
+            </li>
+            @foreach ($categories as $category)
+                <li>
+                  <a href="{{URL("/category/$category->name")}}">{{$category->name}}</a>
+                </li>
+            @endforeach
         </ul>
       </div>
 </nav>
 <style scoped>
+.active{
+    background : #FFD910;
+}
 .main_logo{
     width: 100%;
     background: black;
@@ -56,11 +54,11 @@
   text-decoration: none;
   text-transform: uppercase;
   padding: 18px 18.7px;
-  border-right: 2px solid rgb(226, 86, 4);
+  border-right: 2px solid #FFD910;
 
 }
 .navigation_category_items ul li a:hover{
-    color: rgb(226, 86, 4);
+    color: #FFD910;
 }
 #nav li ul {
   transition: all 0.3s ease 0s;

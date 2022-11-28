@@ -23,4 +23,6 @@ Route::group([
     Route::crud('post', 'PostCrudController');
     Route::crud('tag', 'TagCrudController');
     Route::get('charts/weekly-users', 'Charts\WeeklyUsersChartController@response')->name('charts.weekly-users.index');
+    Route::get('charts/new-entries-chart-controller', 'Charts\NewEntriesChartControllerChartController@response')->name('charts.new-entries-chart-controller.index');
+    Route::get('charts/new-entries-chart', 'Charts\NewEntriesChartChartController@response')->name('charts.new-entries-chart.index');
 }); // this should be the absolute last line of this file

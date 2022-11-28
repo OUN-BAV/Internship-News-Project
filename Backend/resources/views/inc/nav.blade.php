@@ -5,20 +5,28 @@
     </div>
     <div class="navigation_category_items">
         <ul id="nav">
-            <li>
-              <a href="{{URL('/')}}"><i class="fa fa-home"></i> Home</a>
+            <li >
+              <a class="{{ Request::is('/') ? 'active' : 'text-black' }}"
+               href="{{URL('/')}}"><i class="fa fa-home"></i> Home</a>
             </li>
             @foreach ($categories as $category)
-                <li>
-                  <a href="{{URL("/category/$category->name")}}">{{$category->name}}</a>
+              <li>
+                  <a @if (url()->current() == "http://127.0.0.1:8000/category/$category->name")
+                    class="active"
+                    @else @class(['text-black'])
+                  @endif href="{{URL("/category/$category->name")}}">{{$category->name}}
+                     </a>
                 </li>
             @endforeach
         </ul>
       </div>
 </nav>
 <style scoped>
+  .text-black {
+    color: #000;
+  }
 .active{
-    background : #FFD910;
+    color: #d35400;
 }
 .main_logo{
     width: 100%;
@@ -46,7 +54,7 @@
   position: relative;
 }
 .navigation_category_items ul li a {
-  color: rgb(3, 3, 3);
+  /* color: rgb(3, 3, 3); */
   display: block;
   font-family: "bebasregular";
   font-size: 15px;
@@ -54,11 +62,11 @@
   text-decoration: none;
   text-transform: uppercase;
   padding: 18px 18.7px;
-  border-right: 2px solid #FFD910;
+  border-right: 2px solid #d35400;
 
 }
 .navigation_category_items ul li a:hover{
-    color: #FFD910;
+    background: #d35400;
 }
 #nav li ul {
   transition: all 0.3s ease 0s;

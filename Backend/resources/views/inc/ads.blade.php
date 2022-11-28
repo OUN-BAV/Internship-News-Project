@@ -21,7 +21,5 @@
         position: absolute;
         width: 20px;
         height: 20px;
-        justify-content: flex-end;
-        z-index: 0;
     }
 </style>

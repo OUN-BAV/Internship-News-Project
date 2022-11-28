@@ -5,16 +5,20 @@
     </div>
     <div class="navigation_category_items">
         <ul id="nav">
-            <li><a class="active" href="{{URL('/')}}"><i class="fa fa-home"></i> Home</a></li>
+            <li>
+              <a href="{{URL('/')}}"><i class="fa fa-home"></i> Home</a>
+            </li>
             @foreach ($categories as $category)
-                <li><a href="{{URL("/category/$category->name")}}">{{$category->name}}</a></li>
+                <li>
+                  <a href="{{URL("/category/$category->name")}}">{{$category->name}}</a>
+                </li>
             @endforeach
         </ul>
       </div>
 </nav>
 <style scoped>
 .active{
-    color: #FFD910;
+    background : #FFD910;
 }
 .main_logo{
     width: 100%;
@@ -22,7 +26,6 @@
     text-align: center;
     padding: 3px;
 }
-
 .main_logo h2{
     text-align: center;
     color: #dededf;
@@ -64,5 +67,4 @@
   -o-transition: all 0.3s ease 0s;
   -ms-transition: all 0.3s ease 0s;
 }
-
 </style>

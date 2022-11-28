@@ -14,11 +14,11 @@
 </head>
 <body>
     @yield('nav')
-    @yield('sub_nav')
+    {{-- @yield('sub_nav') --}}
     <div class="container">
         @yield('ads')
         <div class="main d-flex">
-            <div class="main col-sm-9 mt-3 p-4 shadow-sm bg-light">
+            <div class="main col-sm-9 mt-3 p-4">
                 @yield('content')
             </div>
             <div class="sidebar col-sm-3">

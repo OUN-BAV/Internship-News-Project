@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Ads;
+use App\Models\Post;
 use App\Models\Category;
 use App\Http\Requests\CategoryRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
@@ -77,6 +78,7 @@ class CategoryCrudController extends CrudController
         $Category=Category::where('name',$category)->with('post')->get();
         $data['categories']=Category::all();
         $data['posts']=$Category[0]->post;
+        // $data['related_info']=Post::where('category_id',$Category[0]->id)->get();
         $data['ads']=Ads::paginate(1);
         return view('index',$data);
     }

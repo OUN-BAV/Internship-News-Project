@@ -3,7 +3,7 @@
     <h3 class="fw-bold">{{$posts[0]->title}}</h3>
     <div class="d-flex">
         <div>
-            <img src="{{asset('uploads/galleries/'.$posts[0]->thumbnail)}}" class="img-thumbnail" alt="" style="width: 300px;">
+            <img src="{{asset('uploads/galleries/'.$posts[0]->thumbnail)}}" alt="" style="width: 300px;">
         </div>
         <div class="ms-2">
             <p class="p-2 bg-warning rounded">{{$posts[0]->category->name}}</p>
@@ -22,7 +22,17 @@
                     <img src="{{asset('uploads/galleries/'.$gallery->url)}}" alt="" class="w-75 mt-3">
                 </div>
         @endforeach
+    </div>
+{{-- @dd($posts[0]->tags) --}}
+    <div class="tags mt-5 ">
+        <div class="tags-content d-flex mt-3">
+            @foreach ($posts[0]->tags as $tag)
+            <div class="tags-name">
+                <p>{{$tag->name}}</p>
+            </div>
+            @endforeach
         </div>
+    </div>
 </div>
 <style scoped>
     .content_title p{
@@ -31,4 +41,18 @@
         hyphens: auto;
         white-space: normal!important; 
     }
+    .tags-name{
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        background: #ffd910;
+        padding: 5px;
+        height: 5vh;
+    } 
+    /*
+    .content-type{
+        background: rgb(252, 241, 124);
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        padding: 5px;
+        margin-left: 3px;
+        height: 5vh;
+    } */
 </style>

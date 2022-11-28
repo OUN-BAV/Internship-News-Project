@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Charts;
 
-use Backpack\CRUD\app\Http\Controllers\ChartController;
+use App\Models\Category;
 use ConsoleTVs\Charts\Classes\Chartjs\Chart;
+use Backpack\CRUD\app\Http\Controllers\ChartController;
 
 /**
  * Class WeeklyUsersChartController
@@ -24,7 +25,14 @@ class WeeklyUsersChartController extends ChartController
         // OPTIONAL
         // $this->chart->minimalist(false);
         // $this->chart->displayLegend(true);
-        $this->chart->dataset('Red', 'pie', [10, 20, 80, 30])
+        $categories_ob=Category::all()->toArray();
+        $categories_array=[];
+        foreach($categories_ob as $categories){
+            array_push($categories_array,$categories['name']);
+        }
+        // dd($categories_array);
+        
+        $this->chart->dataset('Red', 'bar', [10, 20, 80, 30])
                     ->backgroundColor([
                         'rgb(70, 127, 208)',
                         'rgb(77, 189, 116)',
@@ -37,7 +45,7 @@ class WeeklyUsersChartController extends ChartController
         $this->chart->displayLegend(true);
 
         // MANDATORY. Set the labels for the dataset points
-        $this->chart->labels(['HTML', 'CSS', 'PHP', 'JS']);
+        $this->chart->labels($categories_array);
     }
 
     /**

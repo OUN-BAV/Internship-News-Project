@@ -216,23 +216,26 @@ class PostCrudController extends CrudController
         return $res;
     }
 
-    public function getPost(){
+    public function getPost()
+    {
         $data['posts']=Post::orderBy('id','desc')->with('user','category')->get();
         $data['categories'] = Category::all();
         $data['ads']=Ads::paginate(1);
         return view('index',$data);
     }
-
-    public function getPostById($id){
-        $data['posts'] = Post::where('id', $id)->with('galleries','user','category')->get();
+    public function getPostById($id)
+    {
+        $data['posts'] = Post::where('id', $id)->with('galleries','category','user','tags')->get();
+        $post_category_id = $data['posts'][0]->category->id;
+        $data['related_info']=Post::where('category_id',$post_category_id)->get();
         $data['categories'] = Category::all();
         $data['ads']=Ads::paginate(1);
         return view('pages.info', $data);
     }
-    protected function bulkDelete(PostRequest $request){
+    protected function bulkDelete(PostRequest $request)
+    {
         Post::destroy($request->entries);
         return $request->entries;
     }
 
-   
 }

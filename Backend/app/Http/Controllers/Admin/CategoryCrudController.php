@@ -78,7 +78,7 @@ class CategoryCrudController extends CrudController
         $Category=Category::where('name',$category)->with('post')->get();
         $data['categories']=Category::all();
         $data['posts']=$Category[0]->post;
-        $data['related_info']=Post::where('category_id',$Category[0]->id)->get();
+        // $data['related_info']=Post::where('category_id',$Category[0]->id)->get();
         $data['ads']=Ads::paginate(1);
         return view('index',$data);
     }

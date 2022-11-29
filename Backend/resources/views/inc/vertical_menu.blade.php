@@ -14,14 +14,14 @@
     </div>
     
     <div class="article-related">
-        <h3>Related</h3>
         @if(!empty($related_info))
+        <h3>Related</h3>
             @foreach($related_info as $related)
                 @if($related->id != $posts[0]->id)
                     <div class="row">
                         <div class="col-12">
                     <div class="article-list small">
-                        <img src="https://s9.kh1.co/__image/w=1200,h=630,q=100/62/62dbfd3bb13d0e2e5fd008a7a504550ec3cdb92f.jpg" style="width: 100%" alt="">
+                        <img src="{{asset('uploads/galleries/'.$related->thumbnail)}}" style="width: 100%" alt="">
                         <div class="article-list-item-detail">
                             <a href="{{URL("/article/$related->id")}}">
                                 <h6 class="article-list-item-detail-title">{{$related->title}}</h6>

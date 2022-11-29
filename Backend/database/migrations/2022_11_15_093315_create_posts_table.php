@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('content');
             $table->string('post_by');
-            $table->json('viewer')->nullable();
+            $table->integer('viewer')->default(0);
             $table->string('thumbnail')->nullable();
             $table->longText('gallery')->nullable();
             $table->timestamps();

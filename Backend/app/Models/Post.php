@@ -49,7 +49,4 @@ class Post extends Model
     public function getUserNameAttribute(){
         return optional($this->user)->name;
     }
-    // public function getThumbnailAttribute(){
-    //     return $this->attributes['thumbnail'];
-    // }
 }

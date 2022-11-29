@@ -191,7 +191,6 @@ class PostCrudController extends CrudController
                 'name' => "thumbnail",
                 'type' => 'image',
                 'crop' => true,
-                // 'aspect_ratio' => 1,
                 'disk' => 'public',
                 'upload'    => true,
                 'temporary' => 10,
@@ -225,7 +224,7 @@ class PostCrudController extends CrudController
     }
     public function getPostById($id)
     {
-        $data['posts'] = Post::where('id', $id)->with('galleries','category','user')->get();
+        $data['posts'] = Post::where('id', $id)->with('galleries','category','user','tags')->get();
         $post_category_id = $data['posts'][0]->category->id;
         $data['related_info']=Post::where('category_id',$post_category_id)->get();
         $data['categories'] = Category::all();
@@ -236,6 +235,12 @@ class PostCrudController extends CrudController
     {
         Post::destroy($request->entries);
         return $request->entries;
+    }
+
+    public function view($id){
+        Post::find($id)->increment('total_views');
+        $post_detail = Post::find($id);
+        return view('post.view',compact('dashboard'));
     }
 
 }

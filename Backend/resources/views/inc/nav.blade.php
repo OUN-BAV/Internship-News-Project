@@ -1,7 +1,8 @@
 {{-- @dd($categories) --}}
 <nav class="navbar p-0">
     <div class="main_logo">
-        <img src="{{asset('images/news.png')}}" style="height: 10vh" alt="">
+     
+        <img src=" {{ config('settings.logo')}}" style="height: 10vh" alt="">
     </div>
     <div class="navigation_category_items">
         <ul id="nav">
@@ -11,11 +12,11 @@
             </li>
             @foreach ($categories as $category)
               <li>
-                  <a @if (url()->current() == "http://127.0.0.1:8000/category/$category->name")
+                  <a @if (Request::segment(2) == "$category->name")
                     class="active"
                     @else @class(['text-black'])
                   @endif href="{{URL("/category/$category->name")}}">{{$category->name}}
-                     </a>
+                  </a>
                 </li>
             @endforeach
         </ul>
@@ -54,7 +55,6 @@
   position: relative;
 }
 .navigation_category_items ul li a {
-  /* color: rgb(3, 3, 3); */
   display: block;
   font-family: "bebasregular";
   font-size: 15px;

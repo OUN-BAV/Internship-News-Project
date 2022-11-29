@@ -144,12 +144,19 @@ return [
 
         'https://code.jquery.com/jquery-3.4.1.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js',
-        'https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.2/dist/index.bundle.min.js'
+        'https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.2/dist/index.bundle.min.js',
+        "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js",
+        'js/charts.js',
+        'js/chart-area-demo.js',
+        'js/chart-bar-demo.js',
+        'js/chart-pie-demo.js',
 
         // examples (everything inside the bundle, loaded from CDN)
         // 'https://code.jquery.com/jquery-3.4.1.min.js',
         // 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js',
         // 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
+        "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"
         // 'https://unpkg.com/@coreui/coreui@2.1.16/dist/js/coreui.min.js',
         // 'https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
         // 'https://unpkg.com/sweetalert/dist/sweetalert.min.js',

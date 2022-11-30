@@ -23,6 +23,10 @@ class Post extends Model
         'post_by',
         'thumbnail'
     ];
+    protected $casts = [
+        'created_at'  => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s'
+    ];
     protected $appends = ['UserName'];
     public function galleries()
     {

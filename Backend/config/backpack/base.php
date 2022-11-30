@@ -141,7 +141,7 @@ return [
         // Backstrap includes jQuery, Bootstrap, CoreUI, PNotify, Popper
         'packages/backpack/base/js/bundle.js',
         'packages/backpack/base/js/lightbox-plus-jquery.js',
-
+        'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js',
         'https://code.jquery.com/jquery-3.4.1.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js',
         'https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.2/dist/index.bundle.min.js',

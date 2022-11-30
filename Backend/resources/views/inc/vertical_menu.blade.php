@@ -24,7 +24,7 @@
                         <img src="{{asset('uploads/galleries/'.$related->thumbnail)}}" style="width: 100%" alt="">
                         <div class="article-list-item-detail">
                             <a href="{{URL("/article/$related->id")}}">
-                                <h6 class="article-list-item-detail-title">{{$related->title}}</h6>
+                                <h5 class="article-list-item-detail-title">{{$related->title}}</h5>
                             </a>
                         </div>
                     </div>

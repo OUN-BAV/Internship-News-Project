@@ -61,7 +61,7 @@
   font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
-  padding: 18px 18.7px;
+  padding: 15px 15.7px;
   border-right: 2px solid #d35400;
 
 }

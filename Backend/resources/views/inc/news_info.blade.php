@@ -7,8 +7,9 @@
         </div>
         <div class="ms-2">
             <p class="p-2 rounded" style="background: #d35400">{{$posts[0]->category->name}}</p>
-            <p class=""><i class="fa fa-user-circle fs-4 me-1"></i>{{$posts[0]->user->name}}</p>
-            <p><i class="fa fa-clock fs-4 me-1"></i>{{$posts[0]->created_at}}</p>
+            <p class="view"><i class="fa fa-eye fs-5 me-1"></i>{{$posts[0]->viewer}} Views</p>
+            <p class=""><i class="fa fa-user-circle fs-5 me-1"></i>{{$posts[0]->user->name}}</p>
+            <p><i class="fa fa-clock fs-5 me-1"></i>{{$posts[0]->created_at}}</p>
         </div>
     </div>
     
@@ -23,17 +24,18 @@
                 </div>
         @endforeach
     </div>
-{{-- @dd($posts[0]->tags) --}}
+
     <div class="tags mt-5 ">
         <div class="tags-content d-flex mt-3">
             @foreach ($posts[0]->tags as $tag)
-            <div class="tags-name">
+            <div class="me-2 tags-name">
                 <p>{{$tag->name}}</p>
             </div>
             @endforeach
         </div>
     </div>
 </div>
+
 <style scoped>
     .content_title p{
         overflow-wrap: break-word;
@@ -47,4 +49,8 @@
         padding: 5px;
         height: 5vh;
     } 
+   
+    /* .view:hover{
+        color: #d35400;
+    } */
 </style>

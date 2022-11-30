@@ -1,25 +1,29 @@
 <div class="w-100">
     @if(Request::path() != '/')
-        {{-- Get route request --}}
         <h1 class="mb-4">{{request()->route()->parameters['category']}}</h1>
     @else
         <h1 class="mb-4">Daily News</h1>
     @endif
-    @foreach ($posts as $post)
-        <div  class="row mt-1 shadow-sm p-1 rounded card_zoom">
-            <div class="text-center col-3 ">
-                <img src="{{asset('uploads/galleries/'.$post->thumbnail)}}" class="img-thumbnail" alt="" style="width: 100%;">
-            </div>
-            <div class="col-9 p-2 title">
-                <a href="{{URL("/article/$post->id")}}"><p class="text-dark m-0 p-0 fw-bold">{{$post->title}}</p></a>
-                <div class="content">
-                    {!!$post->content!!}
+    @if(count($posts))
+        @foreach ($posts as $post)
+            <div  class="row mt-1 shadow-sm p-1 rounded card_zoom">
+                <div class="text-center col-3 ">
+                    <img src="{{asset('uploads/galleries/'.$post->thumbnail)}}" class="img-thumbnail" alt="" style="width: 100%;">
                 </div>
-                <p class="text-secondary " style="font-size: 0.7rem;">{{$post->created_at}}</p>
+                <div class="col-9 p-2 title">
+                    <a id="show" href="{{URL("/article/$post->id")}}" onclick="show({{$post->id}})"><p class="text-dark m-0 p-0 fw-bold">{{$post->title}}</p></a>
+                    <div class="content">
+                        {!!$post->content!!}
+                    </div>
+                    <p class="text-secondary " style="font-size: 0.7rem;">{{$post->created_at}}</p>
+                </div>
             </div>
-        </div>
-    @endforeach
+        @endforeach
+    @else
+        <p class="text-secondary">Don't have news right now</p>
+    @endif
 </div>
+
 <style scoped>
     .card_zoom{
         transition: transform .3s;
@@ -46,10 +50,28 @@
         overflow-wrap: break-word;
         word-wrap: break-word;
         hyphens: auto;
-        white-space: normal!important; 
+        white-space: normal!important;
     }
     .title a{
         text-decoration: none;
     }
 </style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+
+<script>
+    // viewer increment
+    function show(param){
+        $.ajax({
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url:'/post-view/'+param.toString(),
+            type:   "PUT",
+            processData: false,
+            contentType: false,
+            cache: false,
+        })
+        console.log($.ajax());
+    }
+</script>
 

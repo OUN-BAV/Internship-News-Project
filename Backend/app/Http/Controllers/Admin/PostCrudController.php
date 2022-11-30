@@ -217,30 +217,41 @@ class PostCrudController extends CrudController
 
     public function getPost()
     {
-        $data['posts']=Post::orderBy('id','desc')->with('user','category')->get();
-        $data['categories'] = Category::all();
-        $data['ads']=Ads::paginate(1);
+        $data=[
+            'posts' => Post::orderBy('id','desc')->with('user','category')->paginate(20),
+            'categories' => Category::paginate(15),
+            'ads' => Ads::paginate(1),
+        ];
         return view('index',$data);
     }
+
     public function getPostById($id)
     {
-        $data['posts'] = Post::where('id', $id)->with('galleries','category','user','tags')->get();
-        $post_category_id = $data['posts'][0]->category->id;
-        $data['related_info']=Post::where('category_id',$post_category_id)->get();
-        $data['categories'] = Category::all();
-        $data['ads']=Ads::paginate(1);
+        $posts = Post::where('id', $id)->with('galleries','category','user','tags')->get();
+        $post_category_id = $posts[0]->category->id;
+        $related_info=Post::where('category_id',$post_category_id)->paginate(10);
+        $categories = Category::paginate(15);
+        $ads=Ads::paginate(1);
+        
+        $data=[
+            'posts' => $posts,
+            'related_info' => $related_info,
+            'categories' => $categories,
+            'ads' => $ads,
+
+        ];
         return view('pages.info', $data);
     }
+
+
     protected function bulkDelete(PostRequest $request)
     {
         Post::destroy($request->entries);
         return $request->entries;
     }
 
-    public function view($id){
-        Post::find($id)->increment('total_views');
-        $post_detail = Post::find($id);
-        return view('post.view',compact('dashboard'));
+    public function increaseViewer($id){
+        Post::find($id)->increment('viewer', 1);
     }
 
 }

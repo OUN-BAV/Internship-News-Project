@@ -24,4 +24,5 @@ Route::get('/',[PostCrudController::class,'getPost']);
 Route::get('/article/{id}', [PostCrudController::class, 'getPostById']);
 Route::put('admin/user/profileUpdate',[UserCrudController::class,'update']);
 Route::post('/admin/user/importToDatabase',[UserCrudController::class,'importToDb']);
-Route::get('post-view/{id}', [PostCrudController::class, 'viewer']);
+// Route::get('post-view/{id}', [PostCrudController::class, 'viewer']);
+Route::put('/post-view/{id}', [PostCrudController::class, 'increaseViewer']);

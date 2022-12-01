@@ -16,7 +16,7 @@
     @include('inc.news_card')
 @endsection
 @section('sidebar')
-    @include('inc.vertical_menu')
+    @include('inc.related_news')
 @endsection
 
 @section('footer')

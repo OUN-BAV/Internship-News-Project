@@ -23,7 +23,7 @@
                     <div class="article-list small">
                         <img src="{{asset('uploads/galleries/'.$related->thumbnail)}}" style="width: 100%" alt="">
                         <div class="article-list-item-detail">
-                            <a href="{{URL("/article/$related->id")}}">
+                            <a onclick="show({{$related->id}})" href="{{URL("/article/$related->id")}}">
                                 <h5 class="article-list-item-detail-title">{{$related->title}}</h5>
                             </a>
                         </div>
@@ -74,3 +74,19 @@
         white-space: normal!important;
     }
 </style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+<script>
+    // viewer increment
+    function show(param){
+        $.ajax({
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url:'/post-view/'+param.toString(),
+            type:   "PUT",
+            processData: false,
+            contentType: false,
+            cache: false,
+        })
+        console.log($.ajax());
+    }
+</script>

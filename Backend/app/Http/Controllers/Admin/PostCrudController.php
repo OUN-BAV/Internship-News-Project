@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Ads;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Category;
 use App\Traits\UploadTrait;
 use Psy\Readline\Hoa\Console;
@@ -120,9 +121,10 @@ class PostCrudController extends CrudController
           ], function () {
                 $postCategory = Category::all()->pluck('name','id')->toArray();
                 return $postCategory;
-          }, function($value) { // if the filter is active
+          }, function($value) { 
                 $postCategory=Post::all()->pluck('category_id')->toArray();
                 $this->crud->addClause('where', 'category_id',$value);
+                return $postCategory;
          });
          $this->crud->addFilter([
             'name'  => 'post_by',
@@ -253,5 +255,11 @@ class PostCrudController extends CrudController
     public function increaseViewer($id){
         Post::find($id)->increment('viewer', 1);
     }
-
+    
+    public function total(){
+        $posts = Post::all();
+        $categories = Category::count();
+        $admins = User::count();
+        return view('vendor.backpack.base.dashboard', compact('posts', 'categories', 'admins'));
+    }
 }

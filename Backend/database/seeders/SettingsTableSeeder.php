@@ -28,7 +28,7 @@ class SettingsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table(config('backpack.settings.table_name'))->truncate();
+        // DB::table(config('backpack.settings.table_name'))->truncate();
         foreach ($this->settings as $index => $setting) {
             $result = DB::table(config('backpack.settings.table_name'))->insert($setting);
 

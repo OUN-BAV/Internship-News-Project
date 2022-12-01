@@ -66,7 +66,7 @@
 
 }
 .navigation_category_items ul li a:hover{
-    background: #d35400;
+  background: #d35400;
 }
 #nav li ul {
   transition: all 0.3s ease 0s;

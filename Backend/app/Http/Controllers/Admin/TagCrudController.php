@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Ads;
 use App\Models\Tag;
+use App\Models\Post;
+use App\Models\Category;
 use App\Http\Requests\TagRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -90,5 +93,14 @@ class TagCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    public function getTagById($name){
+        $tags = Tag::where('name', $name)->with('posts')->get();
+        $data['categories']=Category::all();
+        $data['tags'] = Tag::all();
+        $data['ads']=Ads::paginate(1);
+        $data['posts'] = $tags[0]->posts;
+        return view('index',$data);
     }
 }

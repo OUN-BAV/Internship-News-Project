@@ -1,6 +1,7 @@
 <div class="w-100">
     @if(Request::path() != '/')
-        <h1 class="mb-4">{{request()->route()->parameters['category']}}</h1>
+        {{-- Get route request --}}
+        <h1 class="mb-4">{{Request::segment(2)}}</h1>
     @else
         <h1 class="mb-4">Daily News</h1>
     @endif

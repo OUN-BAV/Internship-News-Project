@@ -9,7 +9,7 @@ class Setting extends Model
 {
     use HasFactory;
     
-    public function setLogoAttribute(){
-        $this->attributes['logo'] = $this->base64Upload(request()->logo);
-    }
+    // public function setLogoAttribute(){
+    //     $this->attributes['logo'] = $this->base64Upload(request()->logo);
+    // }
 }

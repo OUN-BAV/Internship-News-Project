@@ -28,8 +28,11 @@
     <div class="tags mt-5 ">
         <div class="tags-content d-flex mt-3">
             @foreach ($posts[0]->tags as $tag)
-            <div class="me-2 tags-name">
-                <p>{{$tag->name}}</p>
+            <div class="tags-name">
+                <a href="{{URL("/tag/$tag->name")}}" style="text-decoration:none; color:black">
+                    <p>{{$tag->name}}</p>
+                </a>
+                
             </div>
             @endforeach
         </div>
